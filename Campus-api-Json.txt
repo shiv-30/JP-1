@@ -1,0 +1,82 @@
+[
+    {
+        "employee_details_code": {
+            "employee_details_code": 601,
+            "emp_type": "employee",
+            "employee_facility": "wifi2.0",
+            "cs_or_non_cs": "cs",
+            "grade_or_subgrade": "3",
+            "drona_or_non_drona": "drona"
+        },
+        "joining_details_code": {
+            "joining_details_code": 123,
+            "joining_fy_as_fte": "yes",
+            "fte_joining_date": "22-05-2022",
+            "pls_joining_date": "22-05-2022",
+            "joining_psl": "yes",
+            "wfo_date": "22-05-2022",
+            "base_location": "Nagpur"
+        },
+        "campus_code": {
+            "campus_code": 702,
+            "comments": "positive atitude towards work"
+        },
+        "batch_details_code": {
+            "batch_code": 302,
+            "training_batch": "rbt",
+            "gems_batch": "gems0"
+        },
+        "assessment_details_code": {
+            "assessment_details_code": 9001,
+            "exam_end_date": "16-08-2022",
+            "exam_end_date_status": "Pass"
+        },
+        "employee_code": {
+            "empCode": 121,
+            "empName": "ram kumar",
+            "email": "ram@gmail.com",
+            "mobileNumber": "9330202020",
+            "gender": "male"
+        }
+    },
+    {
+        "employee_details_code": {
+            "employee_details_code": 602,
+            "emp_type": "employee",
+            "employee_facility": "electronics_lab",
+            "cs_or_non_cs": "non-cs",
+            "grade_or_subgrade": "4",
+            "drona_or_non_drona": "non-drona"
+        },
+        "joining_details_code": {
+            "joining_details_code": 124,
+            "joining_fy_as_fte": "no",
+            "fte_joining_date": "19-02-2022",
+            "pls_joining_date": "19-02-2022",
+            "joining_psl": "yes",
+            "wfo_date": "19-02-2022",
+            "base_location": "Pune"
+        },
+        "campus_code": {
+            "campus_code": 701,
+            "comments": "hardworking and punctual"
+        },
+        "batch_details_code": {
+            "batch_code": 305,
+            "training_batch": null,
+            "gems_batch": "gems2"
+        },
+        "assessment_details_code": {
+            "assessment_details_code": 9002,
+            "exam_end_date": "17-09-2022",
+            "exam_end_date_status": "Fail"
+        },
+        "employee_code": {
+            "empCode": 122,
+            "empName": "sita kumari",
+            "email": "sita@gmail.com",
+            "mobileNumber": "89282992890",
+            "gender": "female"
+        }
+    }
+]
