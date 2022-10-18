@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.employeedetails.model.EmployeeDetails;
 import com.employeedetails.service.EmployeeDetailsService;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 public class EmployeeDetailsController {
 	
@@ -31,7 +33,7 @@ public class EmployeeDetailsController {
 	@PostMapping("/employeeDetails")  
 	private EmployeeDetails saveEmployee(@RequestBody EmployeeDetails EmployeeDetails)   
 	{  
-	return employeeDetailsService.saveOrUpdate(EmployeeDetails);  
+	return employeeDetailsService.save(EmployeeDetails);  
 	}  
 	
 	//get data by ID
@@ -49,12 +51,13 @@ public class EmployeeDetailsController {
 	}  
 	
 	//edit data
-	@PutMapping("/employeeDetails")  
-	private EmployeeDetails update(@RequestBody EmployeeDetails EmployeeDetails)   
-	{  
-		employeeDetailsService.saveOrUpdate(EmployeeDetails);  
-	return EmployeeDetails;  
-	}  
+	@PutMapping("/employeeDetails/{employee_details_code}")  
+	private Mono<Integer> update(@RequestBody EmployeeDetails EmployeeDetails, @PathVariable("employee_details_code") int employee_details_code) {
+		Integer employeeDetailsId = employeeDetailsService.update(EmployeeDetails, employee_details_code);
+		Mono<Integer> responseObject = Mono.just(employeeDetailsId);
+		return responseObject;
+	}
+	
 	
 	
 }

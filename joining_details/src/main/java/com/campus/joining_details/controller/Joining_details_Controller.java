@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campus.joining_details.domain.Joining_details;
 import com.campus.joining_details.service.Joining_details_Service;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 public class Joining_details_Controller {
 
@@ -29,7 +31,7 @@ public class Joining_details_Controller {
 	// save data into the database
 	@PostMapping("/joiningDetail")
 	private Joining_details saveDetail(@RequestBody Joining_details joining_details) {
-		return joiningService.saveOrUpdate(joining_details);
+		return joiningService.save(joining_details);
 	}
 
 	// get data by ID
@@ -45,10 +47,11 @@ public class Joining_details_Controller {
 	}
 
 	// edit data
-	@PutMapping("/joiningDetail")
-	private Joining_details update(@RequestBody Joining_details joining_details) {
-		joiningService.saveOrUpdate(joining_details);
-		return joining_details;
+	@PutMapping("/joiningDetail/{joiningDetailsCode}")
+	private Mono<Integer> update(@RequestBody Joining_details joining_details, @PathVariable("joiningDetailsCode") Integer joiningDetailsCode) {
+		joiningDetailsCode = joiningService.update(joining_details, joiningDetailsCode);
+		Mono<Integer> responseObject = Mono.just(joiningDetailsCode);
+		return responseObject;
 	}
 
 }

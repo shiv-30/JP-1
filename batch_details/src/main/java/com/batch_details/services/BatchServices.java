@@ -55,16 +55,23 @@ public class BatchServices {
 	}
 	
 	//update batch
-	public void updateBatch(Batch batch,int batchId) {
-		//list = list.stream().map(b->{
-		//	if(b.getBatch_code()==batchId) {
-		//		b.setGems_batch(batch.getGems_batch());
-		//		b.setTraining_batch(batch.getTraining_batch());
-		//	}
-		//	return b;
-		//}).collect(Collectors.toList());
-		batch.setBatch_code(batchId);
-		batchRepository.save(batch);
+	public Integer updateBatch(Batch batch, Integer batchId) {
+		
+		String training_batch = batch.getTraining_batch();
+		String gems_batch = batch.getGems_batch();
+		
+		Batch newBatch = new Batch();
+		newBatch.setTraining_batch(training_batch);
+		newBatch.setGems_batch(gems_batch);
+		
+		batchId = batchRepository.findByBatchDetail(training_batch, gems_batch);
+		
+		if(batchId == null) {
+			Batch updatedBatchRecord = batchRepository.save(newBatch);
+			batchId = updatedBatchRecord.getBatch_code();
+		}
+		
+		return batchId;
 	}
 }
 

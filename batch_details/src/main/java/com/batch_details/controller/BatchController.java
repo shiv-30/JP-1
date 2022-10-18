@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.batch_details.entities.Batch;
 import com.batch_details.services.BatchServices;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 public class BatchController {
 	
@@ -75,17 +77,12 @@ public class BatchController {
 		}
 	}
 	
-	//update bathc
+	//update batch
 	@PutMapping("/batchs/{batchId}")
-	public ResponseEntity<Batch> updateBatch(@RequestBody Batch batch,@PathVariable("batchId") int batchId) {
-		try {
-			this.batchServices.updateBatch(batch,batchId);
-			return ResponseEntity.ok().body(batch);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+	public Mono<Integer> updateBatch(@RequestBody Batch batch,@PathVariable("batchId") int batchId) {
+		Integer batchDetailsCode = batchServices.updateBatch(batch, batchId);
+		Mono<Integer> responseBatch = Mono.just(batchDetailsCode);
+		return responseBatch;
 		
 	}
 }

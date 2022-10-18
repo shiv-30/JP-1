@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.Campus;
 import com.example.demo.services.CampusServices;
 
+import reactor.core.publisher.Mono;
+
 
 @RestController
 public class CampusController {
@@ -67,17 +69,11 @@ public class CampusController {
 	}
 	
 	//update campus
-	@PutMapping("/campuss/{campusId}")
-	public ResponseEntity<Campus> updateCampus(@RequestBody Campus campus,@PathVariable("campusId") int campusId) {
-		try {
-			this.campusServices.updateCampus(campus,campusId);
-			return ResponseEntity.ok().body(campus);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-		
+	@PutMapping("/campus/{campusId}")
+	public Mono<Integer> updateCampus(@RequestBody Campus campus,@PathVariable("campusId") int campusId) {
+		Integer campusCode = campusServices.updateCampus(campus, campusId);
+		Mono<Integer> responseObject = Mono.just(campusCode);
+		return responseObject;
 	}
 
 }

@@ -6,12 +6,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Campus;
 import com.example.demo.repository.CampusRepository;
 
 
-@Component
+@Service
 public class CampusServices {
 	@Autowired
 	private CampusRepository campusRepository;
@@ -58,16 +59,25 @@ public class CampusServices {
 	}
 	
 	//update batch
-	public void updateCampus(Campus campus,int campusId) {
-		//list = list.stream().map(b->{
-		//	if(b.getBatch_code()==batchId) {
-		//		b.setGems_batch(batch.getGems_batch());
-		//		b.setTraining_batch(batch.getTraining_batch());
-		//	}
-		//	return b;
-		//}).collect(Collectors.toList());
-		campus.setCampus_code(campusId);
-		campusRepository.save(campus);
+	public Integer updateCampus(Campus campus,Integer campus_code) {
+		
+		
+		
+		String comments = campus.getComments();
+
+		
+		Campus newCampus = new Campus();
+		newCampus.setComments(comments);
+		
+		campus_code = campusRepository.findByComment(comments);
+		
+		if(campus_code == null) {
+			Campus record = campusRepository.save(newCampus);
+			campus_code = record.getCampus_code();
+			
+		}
+
+		return campus_code;
 	}
 
 }

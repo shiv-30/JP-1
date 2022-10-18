@@ -1,6 +1,8 @@
 package com.employeedetails.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,10 +11,20 @@ import javax.persistence.Table;
 @Table
 public class EmployeeDetails {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employee_details_code;
 	private String emp_type;
 	private String employee_facility;
 	private String cs_or_non_cs;
+	public EmployeeDetails(String emp_type, String employee_facility, String cs_or_non_cs, String grade_or_subgrade,
+			String drona_or_non_drona) {
+		super();
+		this.emp_type = emp_type;
+		this.employee_facility = employee_facility;
+		this.cs_or_non_cs = cs_or_non_cs;
+		this.grade_or_subgrade = grade_or_subgrade;
+		this.drona_or_non_drona = drona_or_non_drona;
+	}
 	private String grade_or_subgrade;
 	private String drona_or_non_drona;
 	public EmployeeDetails(int employee_details_code, String emp_type, String employee_facility, String cs_or_non_cs,

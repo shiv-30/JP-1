@@ -13,6 +13,8 @@ import java.util.List;
 import com.jupyter.model.Employee;
 import com.jupyter.service.EmployeeService;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 public class EmployeeController {
 	
@@ -49,10 +51,12 @@ public class EmployeeController {
 	
 	//edit data
 	@PutMapping("/employee")  
-	private Employee update(@RequestBody Employee Employee)   
+	private Mono<Integer> update(@RequestBody Employee Employee)   
 	{  
-	employeeService.saveOrUpdate(Employee);  
-	return Employee;  
+		Employee updatedEmployee = employeeService.saveOrUpdate(Employee);  
+		Integer empCode = updatedEmployee.getEmpCode();
+		Mono<Integer> responseObject = Mono.just(empCode);
+		return responseObject;  
 	}  
 	
 }

@@ -62,6 +62,29 @@ public class Joining_details {
 
 	
 
+	public Joining_details(String joining_fy_as_fte, LocalDate fte_joining_date, LocalDate pls_joining_date,
+			String joining_psl, LocalDate wfo_date, String base_location) {
+		super();
+		this.joining_fy_as_fte = joining_fy_as_fte;
+		this.fte_joining_date = fte_joining_date;
+		this.pls_joining_date = pls_joining_date;
+		this.joining_psl = joining_psl;
+		this.wfo_date = wfo_date;
+		this.base_location = base_location;
+	}
+
+	public LocalDate getFte_joining_date() {
+		return fte_joining_date;
+	}
+
+	public LocalDate getPls_joining_date() {
+		return pls_joining_date;
+	}
+
+	public LocalDate getWfo_date() {
+		return wfo_date;
+	}
+
 	public Joining_details(Integer joining_details_code, String joining_fy_as_fte, LocalDate fte_joining_date,
 			LocalDate pls_joining_date, String joining_psl, LocalDate wfo_date, String base_location) {
 		super();
